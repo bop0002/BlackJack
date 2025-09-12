@@ -32,9 +32,20 @@ The game is played with a standard 52-card deck. Each round, the player places a
 
 
 ## Project Structure
-'''BlackJack/
+BlackJack/
 ├── Enum/ (GameResult, Rank, Suit)
 ├── blackjack/ (Main)
 ├── blackjack/Core/ (CardPrinter, DataManager, Input, MainGame, Menu, PlayerData, RoundManager, Terminal, UIManager)
-└── blackjack/Object/ (BettingAccount, Card, Dealer, Deck, Hand, Participant, Player, PlayerSlot)'''
+└── blackjack/Object/ (BettingAccount, Card, Dealer, Deck, Hand, Participant, Player, PlayerSlot)
+
+
+---
+
+##Contributing
+Contributions, issues, and feature requests are welcome.  
+
+---
+
+## License
+[MIT](LICENSE).
 
