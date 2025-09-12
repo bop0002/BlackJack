@@ -1,16 +1,41 @@
-# 🃏 Blackjack Game
+# Blackjack Game
 
-A simple console-based Blackjack game written in Java, made as an OOP practice project.
+This is a console-based card game for one player against the dealer.  
+The game is played with a standard 52-card deck. Each round, the player places a bet and tries to beat the dealer by getting a hand value as close to 21 as possible without exceeding it.
 
-## 🎮 Features
-- Betting system with balance
-- Dealer AI (stand on 17)
-- Detect natural Blackjack
-- Save & load player progress
+---
 
-## 🚀 How to run
-```bash
-git clone https://github.com/yourname/BlackJack.git
-cd BlackJack
-javac -d bin src/**/*.java
-java -cp bin blackjack.Core.MainGame
+## Built With
+- Java 17
+
+---
+
+## How to Run
+- Clone the repository
+- Open dist/launhcer.bat
+
+---
+
+## UML
+
+
+---
+
+## Demo
+![Demo](docs/Animation.gif)
+
+---
+
+## Screenshots
+![Main Menu](docs/MainMenu.png)  
+![Instruction](docs/Instruction.png)  
+![Gameplay](docs/Gameplay.png)
+
+---
+
+## Project Structure
+BlackJack/
+├── Enum/ (GameResult, Rank, Suit)
+├── blackjack/ (Main)
+├── blackjack/Core/ (CardPrinter, DataManager, Input, MainGame, Menu, PlayerData, RoundManager, Terminal, UIManager)
+└── blackjack/Object/ (BettingAccount, Card, Dealer, Deck, Hand, Participant, Player, PlayerSlot)
