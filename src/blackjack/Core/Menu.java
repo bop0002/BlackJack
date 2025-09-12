@@ -33,6 +33,7 @@ public class Menu {
     }
 
     public static void showMainMenu() {
+        Terminal.clear();
         printAsciiArt(BLACKJACK_ASCII);
 
         System.out.println();
@@ -57,6 +58,7 @@ public class Menu {
     public static PlayerSlot newGameInit() {
         int slotNum = -1;
         String name = "";
+        Terminal.clear();
         printAsciiArt(BLACKJACK_ASCII);
 
         System.out.println();
@@ -96,9 +98,9 @@ public class Menu {
             slotNum = 1;
         }
 
-
         Player player = new Player(name, 1000);
         PlayerSlot slot = new PlayerSlot(slotNum, player);
+        Terminal.clear();
         return slot;
     }
 
@@ -187,6 +189,7 @@ public class Menu {
     };
 
     public static void showInstruction() {
+        Terminal.clear();
         for (String line : INSTRUCTION_ASCII) {
             System.out.println(GREEN + line + RESET);
         }
@@ -195,6 +198,7 @@ public class Menu {
 
     //SaveSlot
     public static PlayerSlot loadSaveSlot() throws InterruptedException {
+        Terminal.clear();
         DataManager dataManager = new DataManager();
         PlayerSlot slot1 = new PlayerSlot(1, dataManager.loadSlot(1));
         PlayerSlot slot2 = new PlayerSlot(2, dataManager.loadSlot(2));
@@ -206,16 +210,21 @@ public class Menu {
         int playerChoice = Integer.parseInt(Input.sc.nextLine());
         switch (playerChoice) {
             case 1:
+                Terminal.clear();
                 return slot1;
             case 2:
+                Terminal.clear();
                 return slot2;
             case 3:
+                Terminal.clear();
                 return slot3;
             default:
                 System.out.println("Slot doesn't exist");
                 TimeUnit.MILLISECONDS.sleep(500);
+                Terminal.clear();
                 return null;
         }
+
     }
 
     public static void showSlot(int slotNum, Player player) {

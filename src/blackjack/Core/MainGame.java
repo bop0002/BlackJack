@@ -7,35 +7,40 @@ public class MainGame {
 
     public void Start() throws InterruptedException {
         while (true) {
-            Terminal.clear();
             Menu.showMainMenu();
-            int playerChoice = Integer.parseInt(Input.sc.nextLine());
+            int playerChoice;
+
+            try {
+                playerChoice = Integer.parseInt(Input.sc.nextLine());
+            } catch (NumberFormatException e) {
+                Terminal.clear();
+                System.out.println("Invalid choice");
+                continue;
+            }
+
             switch (playerChoice) {
                 case 1:
-                    Terminal.clear();
                     PlayerSlot slotNG = Menu.newGameInit();
                     Menu.startingAnimation();
-                    Terminal.clear();
                     startGame(slotNG);
                     break;
+
                 case 2:
-                    Terminal.clear();
                     PlayerSlot slot = Menu.loadSaveSlot();
-                    Terminal.clear();
                     if (slot != null) {
                         Menu.startingAnimation();
-                        Terminal.clear();
                         startGame(slot);
-                        break;
                     }
                     break;
+
                 case 3:
-                    Terminal.clear();
                     Menu.showInstruction();
                     break;
+
                 case 4:
                     Terminal.clear();
-                    System.exit(0);
+                    return;
+
                 default:
                     Terminal.clear();
                     System.out.println("Invalid choice");

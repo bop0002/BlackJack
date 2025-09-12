@@ -1,6 +1,7 @@
 package blackjack.Object;
 
 import blackjack.Core.CardPrinter;
+import java.util.ArrayList;
 
 public abstract class Participant {
 
@@ -25,14 +26,16 @@ public abstract class Participant {
         bettingAccount.payOut(pot);
     }
 
-    public void playBet(long bet) //name changeable
+    public void placeBet(long bet) //name changeable
     {
-        bettingAccount.playBet(bet);
+        bettingAccount.placeBet(bet);
     }
-
-    public void showAllHand() {
-        CardPrinter.printCards(hand.getHand(), null);
+    
+    public ArrayList<Card> getCard()
+    {
+        return hand.getHand();
     }
+    
 
     public void addCard(Card card) {
         hand.addCard(card);

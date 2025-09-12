@@ -19,7 +19,7 @@ public class BettingAccount {
         balance += pot;
     }
 
-    public void playBet(long bet) {
+    public void placeBet(long bet) {
         if (balance < bet) {
             throw new IllegalStateException("Balance not enough to place bet");
         }

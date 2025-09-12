@@ -33,11 +33,11 @@ public class UIManager {
     public static void showStatus(Player player, Dealer dealer, Deck deck) {
         Terminal.clear();
         System.out.println("== Dealer ==");
-        dealer.showAllHand();
+        CardPrinter.printCards(dealer.getCard(), null);
         System.out.println("Dealer: " + dealer.getPoint());
         System.out.println("----------------------------");
         System.out.println("== Player ==");
-        player.showAllHand();
+        CardPrinter.printCards(player.getCard(), null);
         System.out.println("Player: " + player.getPoint());
         CardPrinter.printDeck(deck);
         System.out.println();

@@ -15,8 +15,5 @@ public class Dealer extends Participant {
         }
     }
 
-    public void showHandHideFirst() {
-        CardPrinter.printCardsHideFirst(hand.getHand(), true);
-    }
 
 }

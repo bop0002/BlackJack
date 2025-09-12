@@ -32,8 +32,8 @@ public class RoundManager {
                 System.out.print(UIManager.getReset());
                 if (player.getBalance() >= bet) {
                     pot = bet * 2;
-                    player.playBet(bet);
-                    //dealer.playBet(bet);
+                    player.placeBet(bet);
+                    //dealer.placeBet(bet);
                     return true;
                 } else {
                     System.out.println(UIManager.getReset() + "Invalid bet" + UIManager.getReset());
@@ -154,8 +154,20 @@ public class RoundManager {
     }
 
     public int playerAction() {
-        int playerChoice = Integer.parseInt(Input.sc.nextLine());
-        return playerChoice;
+        while (true) {
+            System.out.print("Your choice: ");
+            String input = Input.sc.nextLine();
+            try {
+                int choice = Integer.parseInt(input.trim());
+                if (choice == 1 || choice == 2) {
+                    return choice;
+                } else {
+                    System.out.println("Invalid choice");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number");
+            }
+        }
     }
 
     public void dealInitial() {
