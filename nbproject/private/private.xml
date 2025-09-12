@@ -4,14 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/Code/Java/BlackJack/src/blackjack/Core/MainGame.java</file>
-            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Core/RoundManager.java</file>
-            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Object/Participant.java</file>
-            <file>file:/E:/Code/Java/BlackJack/src/Enum/Rank.java</file>
-            <file>file:/E:/Code/Java/BlackJack/src/Enum/GameResult.java</file>
-            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Core/UIManager.java</file>
-            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Main.java</file>
             <file>file:/E:/Code/Java/BlackJack/src/blackjack/Core/Menu.java</file>
-            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Core/CardPrinter.java</file>
+            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Object/Player.java</file>
+            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Core/DataManager.java</file>
+            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Object/PlayerSlot.java</file>
+            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Core/RoundManager.java</file>
+            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Core/PlayerData.java</file>
+            <file>file:/E:/Code/Java/BlackJack/src/blackjack/Object/Dealer.java</file>
         </group>
     </open-files>
 </project-private>

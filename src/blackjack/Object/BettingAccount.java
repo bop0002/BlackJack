@@ -5,7 +5,11 @@ public class BettingAccount {
     private long balance;
 
     public BettingAccount() {
-        this.balance = 1000000;
+        this.balance = 100;
+    }
+
+    public BettingAccount(long balance) {
+        this.balance = balance;
     }
 
     public void payOut(long pot) {

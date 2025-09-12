@@ -2,6 +2,7 @@ package blackjack.Core;
 
 import blackjack.Object.*;
 import Enum.GameResult;
+import java.util.concurrent.TimeUnit;
 
 public class RoundManager {
 
@@ -18,22 +19,31 @@ public class RoundManager {
         result = GameResult.NONE;
     }
 
-    public void bettingState() {
+    public boolean bettingState() throws InterruptedException {
         while (true) {
+            if (player.getBalance() <= 0) {
+                System.out.println(UIManager.getGreen() + "Not enough money");
+                TimeUnit.MILLISECONDS.sleep(500);
+                return false;
+            }
             System.out.print(UIManager.getGreen() + "Enter bet: " + UIManager.getYellow());
             try {
                 long bet = Long.parseLong(Input.sc.nextLine());
                 System.out.print(UIManager.getReset());
-                if (player.getBalance() >= bet && dealer.getBalance() >= bet) {
+                if (player.getBalance() >= bet) {
                     pot = bet * 2;
                     player.playBet(bet);
-                    dealer.playBet(bet);
-                    break;
+                    //dealer.playBet(bet);
+                    return true;
                 } else {
                     System.out.println(UIManager.getReset() + "Invalid bet" + UIManager.getReset());
+                    TimeUnit.MILLISECONDS.sleep(500);
+                    return false;
                 }
             } catch (NumberFormatException e) {
                 System.out.println(UIManager.getReset() + "Please enter a valid number." + UIManager.getReset());
+                TimeUnit.MILLISECONDS.sleep(500);
+                return false;
             }
         }
     }
@@ -97,7 +107,7 @@ public class RoundManager {
                     playingTurn = false;
                     break;
                 default:
-                    System.out.println("Nhap cai khac con me may");
+                    System.out.println("Invalid Choice");
                     result = GameResult.NONE;
                     break;
             }
@@ -110,6 +120,8 @@ public class RoundManager {
 
     void endGameState() {
 
+        UIManager.showStatus(player, dealer, deck);
+
         switch (result) {
             case PLAYER_WIN:
                 UIManager.playerWin();
@@ -117,19 +129,19 @@ public class RoundManager {
                 break;
             case DEALER_WIN:
                 UIManager.dealerWin();
-                dealer.payOut(pot);
+                //dealer.payOut(pot);
                 break;
             case TIE:
                 UIManager.tie();
                 player.payOut(pot / 2);
-                dealer.payOut(pot / 2);
+                //dealer.payOut(pot / 2);
                 break;
             default:
                 System.out.println("endState error");
                 break;
         }
-        UIManager.showStatus(player, dealer, deck);
 
+        pot = 0;
         dealer.clearHand();
         player.clearHand();
 

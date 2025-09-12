@@ -44,12 +44,10 @@ public class UIManager {
     }
 
     public static void dealerWin() {
-        Terminal.clear();
         System.out.println("You Lose");
     }
 
     public static void playerWin() {
-        Terminal.clear();
         System.out.println("You Win");
     }
 
@@ -59,7 +57,6 @@ public class UIManager {
     }
 
     public static void tie() {
-        Terminal.clear();
         System.out.println("Tie");
     }
 

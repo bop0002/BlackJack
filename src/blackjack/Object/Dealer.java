@@ -3,18 +3,20 @@ package blackjack.Object;
 import blackjack.Core.CardPrinter;
 
 public class Dealer extends Participant {
-    
-    public void play(Deck deck)
-    {
-        while(hand.getPoint()<17)
-        {
+
+    public Dealer() {
+        super();
+        this.name = "Dealer";
+    }
+
+    public void play(Deck deck) {
+        while (hand.getPoint() < 17) {
             hand.addCard(deck.drawCard());
         }
     }
- 
-    public void showHandHideFirst()
-    {
+
+    public void showHandHideFirst() {
         CardPrinter.printCardsHideFirst(hand.getHand(), true);
     }
-    
+
 }

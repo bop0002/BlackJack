@@ -1,8 +1,11 @@
 package blackjack.Core;
 
 import java.util.concurrent.TimeUnit;
+import blackjack.Object.Player;
 import Enum.Rank;
 import Enum.Suit;
+import blackjack.Object.PlayerSlot;
+import java.util.ArrayList;
 
 public class Menu {
 
@@ -45,10 +48,58 @@ public class Menu {
 
         System.out.println(GREEN + "================= MAIN MENU =================" + RESET);
         System.out.println(CYAN + "                 1. New Game" + RESET);
-        System.out.println(CYAN + "                 2. Settings" + RESET);
+        System.out.println(CYAN + "                 2. Load" + RESET);
         System.out.println(CYAN + "                 3. Instruction" + RESET);
         System.out.println(CYAN + "                 4. Exit" + RESET);
         System.out.println(GREEN + "============================================" + RESET);
+    }
+
+    public static PlayerSlot newGameInit() {
+        int slotNum = -1;
+        String name = "";
+        printAsciiArt(BLACKJACK_ASCII);
+
+        System.out.println();
+        System.out.println(
+                "               "
+                + GREEN + "♠"
+                + RED + "   ♦"
+                + GREEN + "   ♣"
+                + RED + "   ♥"
+                + RESET
+        );
+        System.out.println();
+
+        System.out.println(GREEN + "================= New Game =================" + RESET);
+
+        // Name
+        try {
+            System.out.print(CYAN + "Enter player name: " + RESET);
+            name = Input.sc.nextLine().trim();
+            if (name.isEmpty()) {
+                throw new IllegalArgumentException("Name cannot be empty!");
+            }
+        } catch (Exception e) {
+            System.out.println(RED + "Invalid name, using 'Default'." + RESET);
+            name = "Default";
+        }
+
+        // Slot
+        try {
+            System.out.print(CYAN + "Enter save slot: " + RESET);
+            slotNum = Integer.parseInt(Input.sc.nextLine());
+            if (slotNum <= 0) {
+                throw new IllegalArgumentException("Slot must be > 0");
+            }
+        } catch (Exception e) {
+            System.out.println(RED + "Invalid slot number, using slot 1." + RESET);
+            slotNum = 1;
+        }
+
+
+        Player player = new Player(name, 1000);
+        PlayerSlot slot = new PlayerSlot(slotNum, player);
+        return slot;
     }
 
     private static void printAsciiArt(String[] art) {
@@ -97,16 +148,16 @@ public class Menu {
         }
     }
 
-    public static void showGameMenu(long balance) {
+    public static void showGameMenu(Player player) {
         Terminal.clear();
         System.out.println(GREEN + "============================================" + RESET);
         System.out.println(GREEN + "                 GAME MENU" + RESET);
         System.out.println(GREEN + "============================================" + RESET);
         System.out.println();
         System.out.println(CYAN + "        1. Bet and Play" + RESET);
-        System.out.println(CYAN + "        2. Exit" + RESET);
+        System.out.println(CYAN + "        2. Save and Exit" + RESET);
         System.out.println();
-        System.out.println(GREEN + "Your Balance: " + YELLOW + balance + RESET);
+        System.out.println(GREEN + "Your Balance: " + YELLOW + player.getBalance() + RESET);
         System.out.println(GREEN + "============================================" + RESET);
     }
 
@@ -142,14 +193,51 @@ public class Menu {
         String temp = Input.sc.nextLine();
     }
 
-    public static void Highscore() {
-        for (Suit s : Suit.values()) {
-            System.out.println(s + " => " + s.getArt());
+    //SaveSlot
+    public static PlayerSlot loadSaveSlot() throws InterruptedException {
+        DataManager dataManager = new DataManager();
+        PlayerSlot slot1 = new PlayerSlot(1, dataManager.loadSlot(1));
+        PlayerSlot slot2 = new PlayerSlot(2, dataManager.loadSlot(2));
+        PlayerSlot slot3 = new PlayerSlot(3, dataManager.loadSlot(3));
+        showSlot(1, slot1.getPlayer());
+        showSlot(2, slot2.getPlayer());
+        showSlot(3, slot3.getPlayer());
+        System.out.println("Enter number to choose slot: ");
+        int playerChoice = Integer.parseInt(Input.sc.nextLine());
+        switch (playerChoice) {
+            case 1:
+                return slot1;
+            case 2:
+                return slot2;
+            case 3:
+                return slot3;
+            default:
+                System.out.println("Slot doesn't exist");
+                TimeUnit.MILLISECONDS.sleep(500);
+                return null;
         }
-        for (Rank r : Rank.values()) {
-            System.out.println(r + " => " + r.getArt());
+    }
+
+    public static void showSlot(int slotNum, Player player) {
+        int width = 17;
+
+        String line1 = String.format("Slot %d: %s", slotNum, player.getName());
+        String line2 = String.format("Balance: $%d", player.getBalance());
+
+        line1 = padRight(line1, width);
+        line2 = padRight(line2, width);
+
+        System.out.println(GREEN + "┌" + "─".repeat(width) + "┐" + RESET);
+        System.out.println(GREEN + "│" + RESET + YELLOW + line1 + RESET + GREEN + "│" + RESET);
+        System.out.println(GREEN + "│" + RESET + YELLOW + line2 + RESET + GREEN + "│" + RESET);
+        System.out.println(GREEN + "└" + "─".repeat(width) + "┘" + RESET);
+    }
+
+    private static String padRight(String s, int n) {
+        if (s.length() >= n) {
+            return s;
         }
-        String temp = Input.sc.nextLine();
+        return s + " ".repeat(n - s.length());
     }
 
 }
