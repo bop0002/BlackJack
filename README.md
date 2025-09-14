@@ -1,7 +1,7 @@
 # Blackjack Game
 
 This is a console-based card game for one player against the dealer.  
-The game is played with a standard 52-card deck. Each round, the player places a bet and tries to beat the dealer by getting a hand value as close to 21 as possible without exceeding it.
+The game is played with a standard 52-card deck. Each round, the player places a bet and tries to beat the dealer by getting a hand value as close to 21 as possible without busting it.
 
 
 
