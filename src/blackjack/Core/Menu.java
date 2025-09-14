@@ -2,19 +2,12 @@ package blackjack.Core;
 
 import java.util.concurrent.TimeUnit;
 import blackjack.Object.Player;
-import Enum.Rank;
-import Enum.Suit;
+import Enum.*;
 import blackjack.Object.PlayerSlot;
 import java.util.ArrayList;
 
 public class Menu {
 
-    //color
-    private static final String RESET = "\u001B[0m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String YELLOW = "\u001B[33m";
-    private static final String CYAN = "\u001B[36m";
-    private static final String RED = "\u001B[31m";
 
     //print game name
     private static final String[] BLACKJACK_ASCII = {
@@ -39,20 +32,20 @@ public class Menu {
         System.out.println();
         System.out.println(
                 "               "
-                + GREEN + "♠"
-                + RED + "   ♦"
-                + GREEN + "   ♣"
-                + RED + "   ♥"
-                + RESET
+                + Color.GREEN + "♠"
+                + Color.RED + "   ♦"
+                + Color.GREEN + "   ♣"
+                + Color.RED + "   ♥"
+                + Color.RESET
         );
         System.out.println();
 
-        System.out.println(GREEN + "================= MAIN MENU =================" + RESET);
-        System.out.println(CYAN + "                 1. New Game" + RESET);
-        System.out.println(CYAN + "                 2. Load" + RESET);
-        System.out.println(CYAN + "                 3. Instruction" + RESET);
-        System.out.println(CYAN + "                 4. Exit" + RESET);
-        System.out.println(GREEN + "============================================" + RESET);
+        System.out.println(Color.GREEN + "================= MAIN MENU =================" + Color.RESET);
+        System.out.println(Color.CYAN + "                 1. New Game" + Color.RESET);
+        System.out.println(Color.CYAN + "                 2. Load" + Color.RESET);
+        System.out.println(Color.CYAN + "                 3. Instruction" + Color.RESET);
+        System.out.println(Color.CYAN + "                 4. Exit" + Color.RESET);
+        System.out.println(Color.GREEN + "============================================" + Color.RESET);
     }
 
     public static PlayerSlot newGameInit() {
@@ -64,37 +57,37 @@ public class Menu {
         System.out.println();
         System.out.println(
                 "               "
-                + GREEN + "♠"
-                + RED + "   ♦"
-                + GREEN + "   ♣"
-                + RED + "   ♥"
-                + RESET
+                + Color.GREEN + "♠"
+                + Color.RED + "   ♦"
+                + Color.GREEN + "   ♣"
+                + Color.RED + "   ♥"
+                + Color.RESET
         );
         System.out.println();
 
-        System.out.println(GREEN + "================= New Game =================" + RESET);
+        System.out.println(Color.GREEN + "================= New Game =================" + Color.RESET);
 
         // Name
         try {
-            System.out.print(CYAN + "Enter player name: " + RESET);
+            System.out.print(Color.CYAN + "Enter player name: " + Color.RESET);
             name = Input.sc.nextLine().trim();
             if (name.isEmpty()) {
                 throw new IllegalArgumentException("Name cannot be empty!");
             }
         } catch (Exception e) {
-            System.out.println(RED + "Invalid name, using 'Default'." + RESET);
+            System.out.println(Color.RED + "Invalid name, using 'Default'." + Color.RESET);
             name = "Default";
         }
 
         // Slot
         try {
-            System.out.print(CYAN + "Enter save slot: " + RESET);
+            System.out.print(Color.CYAN + "Enter save slot: " + Color.RESET);
             slotNum = Integer.parseInt(Input.sc.nextLine());
             if (slotNum <= 0) {
                 throw new IllegalArgumentException("Slot must be > 0");
             }
         } catch (Exception e) {
-            System.out.println(RED + "Invalid slot number, using slot 1." + RESET);
+            System.out.println(Color.RED + "Invalid slot number, using slot 1." + Color.RESET);
             slotNum = 1;
         }
 
@@ -106,7 +99,7 @@ public class Menu {
 
     private static void printAsciiArt(String[] art) {
         for (String line : art) {
-            System.out.println(YELLOW + line + RESET);
+            System.out.println(Color.YELLOW + line + Color.RESET);
         }
     }
 
@@ -126,7 +119,7 @@ public class Menu {
         for (String line : STARTING_ASCII) {
             int padding = (width - line.length()) / 2;
             String spaces = " ".repeat(Math.max(0, padding));
-            System.out.println(GREEN + spaces + line + RESET);
+            System.out.println(Color.GREEN + spaces + line + Color.RESET);
         }
 
         for (int i = 0; i < 4; i++) {
@@ -140,9 +133,9 @@ public class Menu {
 
                 if (j == STARTING_ASCII.length - 1) {
 
-                    System.out.println(GREEN + spaces + STARTING_ASCII[j] + dots + RESET);
+                    System.out.println(Color.GREEN + spaces + STARTING_ASCII[j] + dots + Color.RESET);
                 } else {
-                    System.out.println(GREEN + spaces + STARTING_ASCII[j] + RESET);
+                    System.out.println(Color.GREEN + spaces + STARTING_ASCII[j] + Color.RESET);
                 }
             }
 
@@ -152,15 +145,15 @@ public class Menu {
 
     public static void showGameMenu(Player player) {
         Terminal.clear();
-        System.out.println(GREEN + "============================================" + RESET);
-        System.out.println(GREEN + "                 GAME MENU" + RESET);
-        System.out.println(GREEN + "============================================" + RESET);
+        System.out.println(Color.GREEN + "============================================" + Color.RESET);
+        System.out.println(Color.GREEN + "                 GAME MENU" + Color.RESET);
+        System.out.println(Color.GREEN + "============================================" + Color.RESET);
         System.out.println();
-        System.out.println(CYAN + "        1. Bet and Play" + RESET);
-        System.out.println(CYAN + "        2. Save and Exit" + RESET);
+        System.out.println(Color.CYAN + "        1. Bet and Play" + Color.RESET);
+        System.out.println(Color.CYAN + "        2. Save and Exit" + Color.RESET);
         System.out.println();
-        System.out.println(GREEN + "Your Balance: " + YELLOW + player.getBalance() + RESET);
-        System.out.println(GREEN + "============================================" + RESET);
+        System.out.println(Color.GREEN + "Your Balance: " + Color.YELLOW + player.getBalance() + Color.RESET);
+        System.out.println(Color.GREEN + "============================================" + Color.RESET);
     }
 
     //Instruction
@@ -191,7 +184,7 @@ public class Menu {
     public static void showInstruction() {
         Terminal.clear();
         for (String line : INSTRUCTION_ASCII) {
-            System.out.println(GREEN + line + RESET);
+            System.out.println(Color.GREEN + line + Color.RESET);
         }
         String temp = Input.sc.nextLine();
     }
@@ -236,10 +229,10 @@ public class Menu {
         line1 = padRight(line1, width);
         line2 = padRight(line2, width);
 
-        System.out.println(GREEN + "┌" + "─".repeat(width) + "┐" + RESET);
-        System.out.println(GREEN + "│" + RESET + YELLOW + line1 + RESET + GREEN + "│" + RESET);
-        System.out.println(GREEN + "│" + RESET + YELLOW + line2 + RESET + GREEN + "│" + RESET);
-        System.out.println(GREEN + "└" + "─".repeat(width) + "┘" + RESET);
+        System.out.println(Color.GREEN + "┌" + "─".repeat(width) + "┐" + Color.RESET);
+        System.out.println(Color.GREEN + "│" + Color.RESET + Color.YELLOW + line1 + Color.RESET + Color.GREEN + "│" + Color.RESET);
+        System.out.println(Color.GREEN + "│" + Color.RESET + Color.YELLOW + line2 + Color.RESET + Color.GREEN + "│" + Color.RESET);
+        System.out.println(Color.GREEN + "└" + "─".repeat(width) + "┘" + Color.RESET);
     }
 
     private static String padRight(String s, int n) {

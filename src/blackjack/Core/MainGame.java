@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MainGame {
 
-    public void Start() throws InterruptedException {
+    public void startGame() throws InterruptedException {
         while (true) {
             Menu.showMainMenu();
             int playerChoice;
@@ -22,14 +22,14 @@ public class MainGame {
                 case 1:
                     PlayerSlot slotNG = Menu.newGameInit();
                     Menu.startingAnimation();
-                    startGame(slotNG);
+                    gameLoop(slotNG);
                     break;
 
                 case 2:
                     PlayerSlot slot = Menu.loadSaveSlot();
                     if (slot != null) {
                         Menu.startingAnimation();
-                        startGame(slot);
+                        gameLoop(slot);
                     }
                     break;
 
@@ -48,7 +48,7 @@ public class MainGame {
         }
     }
 
-    public void startGame(PlayerSlot playerSlot) throws InterruptedException {
+    public void gameLoop(PlayerSlot playerSlot) throws InterruptedException {
         Player player = playerSlot.getPlayer();
         Dealer dealer = new Dealer();
         DataManager dataManager = new DataManager();

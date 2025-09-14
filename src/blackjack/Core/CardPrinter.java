@@ -1,10 +1,9 @@
 package blackjack.Core;
 
+import Enum.*;
 import java.util.*;
 import blackjack.Object.Card;
 import blackjack.Object.Deck;
-import Enum.Rank;
-import Enum.Suit;
 
 public class CardPrinter {
 
@@ -12,9 +11,9 @@ public class CardPrinter {
 
     private static String colorSuit(String suit) {
         if ("♦♥".contains(suit)) {
-            return UIManager.getRed() + suit + UIManager.getReset();
+            return Color.RED + suit + Color.RESET;
         } else {
-            return UIManager.getGreen() + suit + UIManager.getReset();
+            return Color.GREEN + suit + Color.RESET;
         }
     }
 
@@ -76,9 +75,9 @@ public class CardPrinter {
     }
 
     public static void printDeck(Deck deck) {
-        String top = UIManager.getYellow() + "╔═══════════════╗" + UIManager.getReset();
-        String middle = UIManager.getYellow() + String.format("║  DECK: %-4d   ║", deck.getSize()) + UIManager.getReset();
-        String bottom = UIManager.getYellow() + "╚═══════════════╝" + UIManager.getReset();
+        String top = Color.YELLOW + "╔═══════════════╗" + Color.RESET;
+        String middle = Color.YELLOW + String.format("║  DECK: %-4d   ║", deck.getSize()) + Color.RESET;
+        String bottom = Color.YELLOW + "╚═══════════════╝" + Color.RESET;
 
         System.out.println(top);
         System.out.println(middle);

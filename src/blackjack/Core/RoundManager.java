@@ -1,5 +1,6 @@
 package blackjack.Core;
 
+import Enum.Color;
 import blackjack.Object.*;
 import Enum.GameResult;
 import java.util.concurrent.TimeUnit;
@@ -10,7 +11,7 @@ public class RoundManager {
     public final Dealer dealer;
     private GameResult result;
     private long pot = 0;
-    public Deck deck;
+    private Deck deck;
 
     public RoundManager(Player player, Dealer dealer) {
         this.player = player;
@@ -22,26 +23,26 @@ public class RoundManager {
     public boolean bettingState() throws InterruptedException {
         while (true) {
             if (player.getBalance() <= 0) {
-                System.out.println(UIManager.getGreen() + "Not enough money");
+                System.out.println(Color.GREEN + "Not enough money");
                 TimeUnit.MILLISECONDS.sleep(500);
                 return false;
             }
-            System.out.print(UIManager.getGreen() + "Enter bet: " + UIManager.getYellow());
+            System.out.print(Color.GREEN + "Enter bet: " + Color.YELLOW);
             try {
                 long bet = Long.parseLong(Input.sc.nextLine());
-                System.out.print(UIManager.getReset());
+                System.out.print(Color.RESET);
                 if (player.getBalance() >= bet) {
                     pot = bet * 2;
                     player.placeBet(bet);
                     //dealer.placeBet(bet);
                     return true;
                 } else {
-                    System.out.println(UIManager.getReset() + "Invalid bet" + UIManager.getReset());
+                    System.out.println(Color.RESET + "Invalid bet" + Color.RESET);
                     TimeUnit.MILLISECONDS.sleep(500);
                     return false;
                 }
             } catch (NumberFormatException e) {
-                System.out.println(UIManager.getReset() + "Please enter a valid number." + UIManager.getReset());
+                System.out.println(Color.RESET + "Please enter a valid number." + Color.RESET);
                 TimeUnit.MILLISECONDS.sleep(500);
                 return false;
             }
@@ -118,7 +119,7 @@ public class RoundManager {
         }
     }
 
-    void endGameState() {
+    private void endGameState() {
 
         UIManager.showStatus(player, dealer, deck);
 
@@ -145,15 +146,15 @@ public class RoundManager {
         dealer.clearHand();
         player.clearHand();
 
-        System.out.println(UIManager.getCyan() + "Press enter continue....");
+        System.out.println(Color.CYAN + "Press enter continue....");
         String temp = Input.sc.nextLine();
     }
 
-    public void playerHit() {
+    private void playerHit() {
         player.addCard(deck.drawCard());
     }
 
-    public int playerAction() {
+    private int playerAction() {
         while (true) {
             System.out.print("Your choice: ");
             String input = Input.sc.nextLine();
@@ -170,14 +171,14 @@ public class RoundManager {
         }
     }
 
-    public void dealInitial() {
+    private void dealInitial() {
         player.addCard(deck.drawCard());
         dealer.addCard(deck.drawCard());
         player.addCard(deck.drawCard());
         dealer.addCard(deck.drawCard());
     }
 
-    public void checkNaturalBlackJack() {
+    private void checkNaturalBlackJack() {
         if (player.isNaturalBlackJack() && dealer.isNaturalBlackJack()) {
             result = GameResult.TIE;
         }
@@ -189,7 +190,7 @@ public class RoundManager {
         }
     }
 
-    public void calEndGame() {
+    private void calEndGame() {
         int playerPoint = player.getPoint();
         int dealerPoint = dealer.getPoint();
 
