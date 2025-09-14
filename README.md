@@ -34,34 +34,12 @@ The game is played with a standard 52-card deck. Each round, the player places a
 
 ## 📂 Project Structure
 
-BlackJack/
-├── Enum/
-│ ├── Rank.java
-│ ├── Suit.java
-│ └── GameResult.java
-│
-├── blackjack/
-│ ├── Main.java
-│ ├── Core/
-│ │ ├── MainGame.java
-│ │ ├── Menu.java
-│ │ ├── RoundManager.java
-│ │ ├── UIManager.java
-│ │ └── Input.java
-│ │
-│ └── Object/
-│ ├── Participant.java
-│ ├── Player.java
-│ ├── Dealer.java
-│ ├── Card.java
-│ ├── Hand.java
-│ ├── Deck.java
-│ └── BettingAccount.java
-│
-└── docs/
-├── Animation.gif
-├── MainMenu.png
-└── Instruction.png
+```BlackJack/
+├── Enum/ (Rank, Suit, GameResult)
+├── blackjack/Core/ (MainGame, Menu, RoundManager, UIManager, Input)
+├── blackjack/Object/ (Participant, Player, Dealer, Card, Hand, Deck, BettingAccount)
+└── docs/ (Animation.gif, MainMenu.png, Instruction.png)
+```
 
 ---
 
