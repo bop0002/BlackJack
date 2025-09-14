@@ -12,7 +12,7 @@ The game is played with a standard 52-card deck. Each round, the player places a
 
 ## How to Run
 - Clone the repository
-- Open dist/launhcer.bat
+- Open dist/launcher.bat
 
 
 ## UML
