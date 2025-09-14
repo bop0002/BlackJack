@@ -32,7 +32,7 @@ The game is played with a standard 52-card deck. Each round, the player places a
 ![Gameplay](docs/Gameplay.PNG)
 
 
-## 📂 Project Structure
+## Project Structure
 
 ```BlackJack/
 ├── Enum/
