@@ -17,8 +17,9 @@ The game is played with a standard 52-card deck. Each round, the player places a
 
 ## UML
 
+![Activity Diagram](docs/ActivityDiagram.png)
 
-
+![Class Diagram](docs/ClassDiagram.png)
 
 ## Demo
 ![Demo](docs/Animation.gif)
